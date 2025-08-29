@@ -58,7 +58,7 @@ st.set_page_config(layout="centered")
 
 # Imagen de fondo
 
-background_url = "fondo.png"
+background_url = "https://raw.githubusercontent.com/felixandro/PD_R5_CH_Q/refs/heads/master/fondo.png"
 s.agregar_imagen_fondo(background_url)
 
 # Identificación del Encuestador
