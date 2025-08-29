@@ -150,23 +150,9 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
     altA_label = data[f"alt{st.session_state.alt_A}"]
     altB_label = data[f"alt{st.session_state.alt_B}"]
     
-    
-    
-    
-
     texto_introductorio1 = textwrap.dedent(f"""
-        El objetivo de esta encuesta es conocer sus preferencias respecto al medio de transporte que usaría ante una eventual construcción de un teleférico en Puerto Montt.
-
-        Para esto suponga un viaje desde **origen** al **Centro de Puerto Montt** (idéntico al que está realizando hoy) y que sus opciones son **altA_label** y **altB_label**.
-
-        Se le presentarán 5 escenarios distintos, donde las alternativas serán caracterizadas mediante su **costo** monetario texto_transbordo y **tiempos** de viaje, espera y caminata. **(Ver ejemplo a continuación)**""")
-
-    texto_introductorio2 = textwrap.dedent(f"""                 
-        **ES CRUCIAL** que **analice detenidamente** cada escenario, **compare** los atributos de ambas alternativas y seleccione aquella que elegiría en una situación **real** con un contexto **idéntico** al de su actual viaje.
-                                           
-        Su elección **no debe verse influida** por si usted cree que el teleférico va o no a construirse.
-                                           
-        La encuesta es totalmente **anónima** y **no hay respuestas correctas o incorrectas**.""")
+        Texto Introductorio 
+        """)
 
 
     s.texto_con_fondo(texto_introductorio1, upper_margin="1rem")
@@ -177,8 +163,8 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
     niveles_a_ejemplo = [altA_label] + data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"] 
     niveles_b_ejemplo = [altB_label] + data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"]
     
-    s.perfil_eleccion(niveles_a_ejemplo, niveles_b_ejemplo)
-    s.texto_con_fondo(texto_introductorio2, upper_margin="1rem")
+    #s.perfil_eleccion(niveles_a_ejemplo, niveles_b_ejemplo)
+    #s.texto_con_fondo(texto_introductorio2, upper_margin="1rem")
 
 
     next_button_2 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_2")
