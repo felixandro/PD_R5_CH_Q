@@ -278,69 +278,181 @@ elif st.session_state.texto_introductorio and not st.session_state.perfiles:
 
 if st.session_state.perfiles and not st.session_state.ingreso:
 
-    s.texto_con_fondo("¿Cuántos vehículos posee en el hogar?", upper_margin=0)
+    if st.session_state.tipo_veh == "Vehículo Liviano":
 
-    veh_hogar = st.selectbox(
-        "",
-        ["", "0", "1", "2 o más"]
-    )
+        s.texto_con_fondo("¿Cuántos vehículos posee en el hogar?", upper_margin=0)
 
-    s.texto_con_fondo("¿En qué rango se encuentra su ingreso familiar mensual?", upper_margin=0)
+        veh_hogar = st.selectbox(
+            "",
+            ["", "0", "1", "2 o más"]
+        )
 
-    ing_familiar = st.selectbox(
-        "",
-        ["", 
-         "Menos de 500.000", 
-         "Entre    500.001 y   750.000", 
-         "Entre    750.001 y 1.000.000",
-         "Entre  1.000.001 y 1.250.000",
-         "Entre  1.250.001 y 1.500.000", 
-         "Entre  1.500.001 y 1.750.000",
-         "Entre  1.750.001 y 2.000.000",
-         "Entre  2.000.001 y 2.250.000",
-         "Entre  2.250.001 y 2.500.000",
-         "Más de 2.500.000",
-         "No Responde"]
-    )
+        s.texto_con_fondo("¿En qué rango se encuentra su ingreso familiar mensual?", upper_margin=0)
 
-    if veh_hogar != "" and ing_familiar != "":
-        next_button_4 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_4")
+        ing_familiar = st.selectbox(
+            "",
+            ["", 
+            "Menos de 500.000", 
+            "Entre    500.001 y   750.000", 
+            "Entre    750.001 y 1.000.000",
+            "Entre  1.000.001 y 1.250.000",
+            "Entre  1.250.001 y 1.500.000", 
+            "Entre  1.500.001 y 1.750.000",
+            "Entre  1.750.001 y 2.000.000",
+            "Entre  2.000.001 y 2.250.000",
+            "Entre  2.250.001 y 2.500.000",
+            "Más de 2.500.000",
+            "No Responde"]
+        )
 
-        if next_button_4:
-            st.session_state.ingreso = True
-            st.session_state.veh_hogar = veh_hogar
-            st.session_state.ing_familiar = ing_familiar
-            st.session_state.horas_list.append(time.strftime("%Y-%m-%d %H:%M:%S"))
+        if veh_hogar != "" and ing_familiar != "":
+            next_button_4 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_4")
 
-            assert len(st.session_state.horas_list) == 9
+            if next_button_4:
+                st.session_state.ingreso = True
+                st.session_state.veh_hogar = veh_hogar
+                st.session_state.ing_familiar = ing_familiar
+                st.session_state.horas_list.append(time.strftime("%Y-%m-%d %H:%M:%S"))
 
-            # ingresos_respuesta = {
-            #     "id_encuestador": st.session_state.id_encuestador_valor,
-            #     "lugar": st.session_state.lugar,
-            #     "hora_id": st.session_state.hora_id,
-            #     "genero": st.session_state.genero,
-            #     "edad": st.session_state.edad,
-            #     "proposito": st.session_state.proposito,
-            #     "veh_hogar": veh_hogar,
-            #     "ingreso": ing_familiar,
-            #     "nro_dis" : st.session_state.nro_disenho,
-            #     "bloque": st.session_state.nro_bloque,
-            #     "id_encuesta": s.generar_id_encuesta(
-            #         hora_id=st.session_state.hora_id,
-            #         nro_disenho=st.session_state.nro_disenho,
-            #         id_encuestador=st.session_state.id_encuestador_valor,
-            #         edad=st.session_state.edad,
-            #         genero=st.session_state.genero,
-            #         proposito=st.session_state.proposito
-            #     )
-            # }
+                assert len(st.session_state.horas_list) == 9
 
-            tiempos_respuesta = s.generar_tiempos_dict(st.session_state.horas_list)
+                # ingresos_respuesta = {
+                #     "id_encuestador": st.session_state.id_encuestador_valor,
+                #     "lugar": st.session_state.lugar,
+                #     "hora_id": st.session_state.hora_id,
+                #     "genero": st.session_state.genero,
+                #     "edad": st.session_state.edad,
+                #     "proposito": st.session_state.proposito,
+                #     "veh_hogar": veh_hogar,
+                #     "ingreso": ing_familiar,
+                #     "nro_dis" : st.session_state.nro_disenho,
+                #     "bloque": st.session_state.nro_bloque,
+                #     "id_encuesta": s.generar_id_encuesta(
+                #         hora_id=st.session_state.hora_id,
+                #         nro_disenho=st.session_state.nro_disenho,
+                #         id_encuestador=st.session_state.id_encuestador_valor,
+                #         edad=st.session_state.edad,
+                #         genero=st.session_state.genero,
+                #         proposito=st.session_state.proposito
+                #     )
+                # }
 
-            # total_dict = ingresos_respuesta | tiempos_respuesta
+                tiempos_respuesta = s.generar_tiempos_dict(st.session_state.horas_list)
 
-            # s.guardar_ingresos(total_dict)
-            st.rerun()
+                # total_dict = ingresos_respuesta | tiempos_respuesta
+
+                # s.guardar_ingresos(total_dict)
+                st.rerun()
+    
+    else: 
+
+        s.texto_con_fondo("¿Quién Financia este viaje?", upper_margin=0)
+
+        financiador = st.selectbox(
+            "",
+            ["", 
+             "Ud mismo (el chofer)", 
+             "Un acompañante", 
+             "Alguien de su grupo familiar directo", 
+             "Su empleador o el de un acompañante", 
+             "Otro"],
+             key = "financiador"
+        )
+
+        s.texto_con_fondo("¿De quién es el camión en que viaja?", upper_margin=0)
+
+        duenho_camion = st.selectbox(
+            "",
+            ["", 
+             "Ud mismo (el chofer)", 
+             "Un acompañante", 
+             "Alguien de su grupo familiar directo", 
+             "Su empleador o el de un acompañante", 
+             "Otro"],
+             key = "duenho_camion"
+        )
+
+        s.texto_con_fondo("¿Cual es la capacidad del camión?", upper_margin=0)
+
+        capacidad = st.number_input(
+            "",
+            min_value=0,
+            max_value=None,
+            value=None,
+            step=1,
+            key = "capacidad"
+        )
+
+        s.texto_con_fondo("¿Cuanta carga transporta hoy?", upper_margin=0)
+
+        carga = st.number_input(
+            "",
+            min_value=0,
+            max_value=None,
+            value=None,
+            step=1,
+            key = "carga"
+        )
+
+        s.texto_con_fondo("¿Que tipo de carga transporta hoy?", upper_margin=0)
+
+        tipo_carga = st.selectbox(
+            "",
+            ["", 
+             "Minera", 
+             "Forestal",
+             "Pesquera",
+             "Agrícola",
+             "Ganadera",
+             "Manufacturera",
+             "Combustibles",
+             "Construcción",
+             "Alimentos",
+             "Retail",
+             "Otro"],
+             key = "tipo_carga"
+        )
+
+        if financiador != "" and duenho_camion != "" and capacidad != "" and carga != "" and tipo_carga != "":
+            next_button_4 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_4")
+
+            if next_button_4:
+                st.session_state.ingreso = True
+                #st.session_state.veh_hogar = veh_hogar
+                #st.session_state.ing_familiar = ing_familiar
+                st.session_state.horas_list.append(time.strftime("%Y-%m-%d %H:%M:%S"))
+
+                assert len(st.session_state.horas_list) == 9
+
+                # ingresos_respuesta = {
+                #     "id_encuestador": st.session_state.id_encuestador_valor,
+                #     "lugar": st.session_state.lugar,
+                #     "hora_id": st.session_state.hora_id,
+                #     "genero": st.session_state.genero,
+                #     "edad": st.session_state.edad,
+                #     "proposito": st.session_state.proposito,
+                #     "veh_hogar": veh_hogar,
+                #     "ingreso": ing_familiar,
+                #     "nro_dis" : st.session_state.nro_disenho,
+                #     "bloque": st.session_state.nro_bloque,
+                #     "id_encuesta": s.generar_id_encuesta(
+                #         hora_id=st.session_state.hora_id,
+                #         nro_disenho=st.session_state.nro_disenho,
+                #         id_encuestador=st.session_state.id_encuestador_valor,
+                #         edad=st.session_state.edad,
+                #         genero=st.session_state.genero,
+                #         proposito=st.session_state.proposito
+                #     )
+                # }
+
+                tiempos_respuesta = s.generar_tiempos_dict(st.session_state.horas_list)
+
+                # total_dict = ingresos_respuesta | tiempos_respuesta
+
+                # s.guardar_ingresos(total_dict)
+                st.rerun()
+
+    
 
 if st.session_state.ingreso:
 
