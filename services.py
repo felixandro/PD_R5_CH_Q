@@ -44,7 +44,7 @@ def perfil_eleccion(niveles_a, niveles_b):
     font_size_cells = "16px"
 
     # Datos
-    index = ["Costo", "Minutos de Viaje"]
+    index = ["Peaje", "Minutos de Viaje", "N° Pistas"]
 
     # Estilo CSS
     estilo_tabla = f"""
@@ -114,7 +114,7 @@ def perfil_eleccion(niveles_a, niveles_b):
     # Fila encabezado como primera fila con <td>
     tabla_html += (
         f"<tr>"
-        f"<td class='col-criterio'>Escenario</td>"
+        f"<td class='col-criterio'>Situación</td>"
         f"<td class='col-a'>{alt_a} </td>"
         f"<td class='col-b'>{alt_b} </td>"
         f"</tr>"

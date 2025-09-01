@@ -151,8 +151,20 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
     altB_label = data[f"alt{st.session_state.alt_B}"]
     
     texto_introductorio1 = textwrap.dedent(f"""
-        Texto Introductorio 
-        """)
+        El tramo Chonchi - Quellón de la ruta 5, en el que se encuentra transitando hoy, actualmente posee **una pista por sentido y no cuenta con cobro de peaje**.
+        
+        En un **hipotético futuro**, el tramo podría pasar a tener **dos pistas por sentido**, lo cual aumentaría la velocidad de circulación, reduciendo así los tiempos de viaje. Sin embargo, esto implicaría la inclusión de una **plaza de peaje** que cobraría una cierta tarifa.
+        
+        En este sentido, el objetivo de la encuesta es medir su disposición a pagar por las eventuales diminuciones en los tiempos de viaje. Para esto le presentaremos cuadros comparativos entre la situación **actual** y un hipotético escenario **futuro** (Mostrar Cuadro).""")
+    
+    texto_introductorio2 = textwrap.dedent(f"""
+        En cada cuadro, el costo y tiempo de viaje futuros irán cambiando. 
+
+        Seleccione la **situación futura** cuando considere que estaría dispuesto a pagar el peaje por las reducciones en tiempo de viaje.
+        
+        En caso contrario, seleccione la **situación actual** cuando crea que las reducciones en tiempo de viaje no son suficientes y/o el peaje estaría por sobre lo que estaría dispuesto a pagar.
+                                           
+        Analice con detención e intente plasmar su disposición a pagar verdadera en cada una de las preguntas.""")
 
 
     s.texto_con_fondo(texto_introductorio1, upper_margin="1rem")
@@ -163,9 +175,8 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
     niveles_a_ejemplo = [altA_label] + data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"] 
     niveles_b_ejemplo = [altB_label] + data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"]
     
-    #s.perfil_eleccion(niveles_a_ejemplo, niveles_b_ejemplo)
-    #s.texto_con_fondo(texto_introductorio2, upper_margin="1rem")
-
+    s.perfil_eleccion(niveles_a_ejemplo, niveles_b_ejemplo)
+    s.texto_con_fondo(texto_introductorio2, upper_margin="1rem")
 
     next_button_2 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_2")
     if next_button_2:
@@ -185,7 +196,7 @@ elif st.session_state.texto_introductorio and not st.session_state.perfiles:
     altA_label = data[f"alt{st.session_state.alt_A}"]
     altB_label = data[f"alt{st.session_state.alt_B}"]
 
-    s.texto_con_fondo(f"Pregunta {len(st.session_state.orden_tarjetas)} - ¿Cuál alternativa elegiría?", upper_margin=0)
+    s.texto_con_fondo(f"Pregunta {len(st.session_state.orden_tarjetas)} - ¿Cuál Situación Prefiere?", upper_margin=0)
 
     niveles_a = [altA_label] + data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"]
     niveles_b = [altB_label] + data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"]
