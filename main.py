@@ -40,9 +40,11 @@ if "perfiles_jv" not in st.session_state:
 
 if "alt_A" not in st.session_state:
     alternativas = [1, 2]
-    st.session_state.alt_A = choice(alternativas)
-    alternativas.remove(st.session_state.alt_A)
-    st.session_state.alt_B = alternativas[0]
+    #st.session_state.alt_A = choice(alternativas)
+    #alternativas.remove(st.session_state.alt_A)
+    #st.session_state.alt_B = alternativas[0]
+    st.session_state.alt_A = 1
+    st.session_state.alt_B = 2
 
 if "elecciones_dict" not in st.session_state:
     st.session_state.elecciones_dict = {}
@@ -163,18 +165,16 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
         
         En un **hipotético futuro**, el tramo podría pasar a tener **dos pistas por sentido**, lo cual aumentaría la velocidad de circulación, reduciendo así los tiempos de viaje. Sin embargo, esto implicaría la inclusión de una **plaza de peaje** que cobraría una cierta tarifa.
         
-        En este sentido, el objetivo de la encuesta es medir su disposición a pagar por las eventuales diminuciones en los tiempos de viaje. Para esto le presentaremos cuadros comparativos entre dos escenarios como los del siguiente cuadro.""")
+        En este sentido, el objetivo de la encuesta es medir su disposición a pagar por las eventuales diminuciones en los tiempos de viaje. Para esto le presentaremos cuadros comparativos **(Ver cuadro siguiente)**.""")
     
     texto_introductorio2 = textwrap.dedent(f"""
-        Del cuadro anterior se observa que una alternativa se caracteriza por ser rápida y cara, mientras la otra es lenta y barata.
+        Del cuadro anterior se observa que una alternativa se caracteriza por ser **rápida y cara**, mientras la otra es **lenta y barata**.
                                            
         Su tarea es comparar ambos escenarios y seleccionar el que preferiría en una situación real. 
                                            
-        En algunos casos podría considerar mejor pagar el costo más alto por ahorrarse una cierta cantidad de minutos, pero en otros casos el ahorro de tiempo podría no justificar el pago adicional.
+        En algunos casos usted podría considerar mejor pagar el costo más alto por un menor tiempo de viaje, pero en otros casos el ahorro de tiempo podría no justificar el pago adicional. Todo esto dependerá de su disposición a pagar, la cual buscamos medir con esta encuesta.
                                            
-        Todo esto dependerá de su disposición a pagar, la cual buscamos medir con esta encuesta.
-                                           
-        Por último, le pedimos por favor que analice con detención antes de responder.""")
+        Le pedimos por favor que analice con detención antes de responder.""")
 
     s.texto_con_fondo(texto_introductorio1, upper_margin="1rem")
 
@@ -228,43 +228,37 @@ elif st.session_state.texto_introductorio and not st.session_state.perfiles:
         if next_button_3:
             st.session_state.lista_tarjetas.remove( st.session_state.nro_tarjeta)
             hora_actual = time.strftime("%Y-%m-%d %H:%M:%S")
-            # respuesta = {
-            #             "id_encuestador": st.session_state.id_encuestador_valor,
-            #             "lugar": st.session_state.lugar,
-            #             "hora_id": st.session_state.hora_id,
-            #             "genero": st.session_state.genero,
-            #             "edad": st.session_state.edad,
-            #             "proposito": st.session_state.proposito,
-            #             "disenho": st.session_state.nro_disenho,
-            #             "tarjeta": st.session_state.nro_tarjeta,
-            #             "a1": data[f"alt{st.session_state.alt_A}"],
-            #             "c_a1": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"][0],
-            #             "tv_a1": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"][1],
-            #             "te_a1": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"][2],
-            #             "tc_a1": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"][3],
-            #             "tr_a1": int(len(altA_label.split("-"))-1),
-            #             "a2": data[f"alt{st.session_state.alt_B}"],
-            #             "c_a2": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"][0],
-            #             "tv_a2": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"][1],
-            #             "te_a2": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"][2],
-            #             "tc_a2": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"][3],
-            #             "tr_a2": int(len(altB_label.split("-"))-1),
-            #             "choice": st.session_state.elecciones_dict[st.session_state.nro_tarjeta],
-            #             "fecha": hora_actual,
-            #             "bloque": st.session_state.nro_bloque,
-            #             "id_respuesta": be.generar_id_respuesta(
-            #                 hora_id=st.session_state.hora_id,
-            #                 nro_disenho=st.session_state.nro_disenho,
-            #                 nro_tarjeta=st.session_state.nro_tarjeta,
-            #                 id_encuestador=st.session_state.id_encuestador_valor,
-            #                 edad=st.session_state.edad,
-            #                 genero=st.session_state.genero,
-            #                 proposito=st.session_state.proposito
-            #             )
-            #         }
+            respuesta = {
+                         "id_encuestador": st.session_state.id_encuestador_valor,
+                         "hora_id": st.session_state.hora_id,
+                         "tipo_veh": st.session_state.tipo_veh,
+                         "genero": st.session_state.genero,
+                         "edad": st.session_state.edad,
+                         "proposito": st.session_state.proposito,
+                         "disenho": st.session_state.nro_disenho,
+                         "bloque": st.session_state.nro_bloque,
+                         "tarjeta": st.session_state.nro_tarjeta,
+                         "a1": data[f"alt{st.session_state.alt_A}"],
+                         "c_a1": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"][0],
+                         "tv_a1": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_A}"][1],
+                         "a2": data[f"alt{st.session_state.alt_B}"],
+                         "c_a2": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"][0],
+                         "tv_a2": data[f"T{st.session_state.nro_tarjeta}"][f"A{st.session_state.alt_B}"][1],
+                         "choice": st.session_state.elecciones_dict[st.session_state.nro_tarjeta],
+                         "fecha": hora_actual,
+                         "id_respuesta": s.generar_id_respuesta(
+                             hora_id=st.session_state.hora_id,
+                             nro_disenho=st.session_state.nro_disenho,
+                             nro_tarjeta=st.session_state.nro_tarjeta,
+                             id_encuestador=st.session_state.id_encuestador_valor,
+                             edad=st.session_state.edad,
+                             genero=st.session_state.genero,
+                             proposito=st.session_state.proposito
+                         )
+                     }
             st.session_state.horas_list.append(time.strftime("%Y-%m-%d %H:%M:%S"))
 
-            #s.guardar_respuestas(respuesta)
+            s.guardar_respuestas(respuesta)
 
             if len(st.session_state.elecciones_dict) <= 4:
                 st.session_state.nro_tarjeta = choice(st.session_state.lista_tarjetas)
@@ -329,32 +323,36 @@ if st.session_state.perfiles and not st.session_state.ingreso:
 
                 assert len(st.session_state.horas_list) == 9
 
-                # ingresos_respuesta = {
-                #     "id_encuestador": st.session_state.id_encuestador_valor,
-                #     "lugar": st.session_state.lugar,
-                #     "hora_id": st.session_state.hora_id,
-                #     "genero": st.session_state.genero,
-                #     "edad": st.session_state.edad,
-                #     "proposito": st.session_state.proposito,
-                #     "veh_hogar": veh_hogar,
-                #     "ingreso": ing_familiar,
-                #     "nro_dis" : st.session_state.nro_disenho,
-                #     "bloque": st.session_state.nro_bloque,
-                #     "id_encuesta": s.generar_id_encuesta(
-                #         hora_id=st.session_state.hora_id,
-                #         nro_disenho=st.session_state.nro_disenho,
-                #         id_encuestador=st.session_state.id_encuestador_valor,
-                #         edad=st.session_state.edad,
-                #         genero=st.session_state.genero,
-                #         proposito=st.session_state.proposito
-                #     )
-                # }
+                ingresos_respuesta = {
+                     "id_encuestador": st.session_state.id_encuestador_valor,
+                     "hora_id": st.session_state.hora_id,
+                     "genero": st.session_state.genero,
+                     "edad": st.session_state.edad,
+                     "proposito": st.session_state.proposito,
+                     "ingreso": ing_familiar,
+                     "financiador": financiador,
+                     "duenho": None,
+                     "tipo_carga": None,      
+                     "nro_dis" : st.session_state.nro_disenho,
+                     "bloque": st.session_state.nro_bloque,
+                     "id_encuesta": s.generar_id_encuesta(
+                         hora_id=st.session_state.hora_id,
+                         nro_disenho=st.session_state.nro_disenho,
+                         id_encuestador=st.session_state.id_encuestador_valor,
+                         edad=st.session_state.edad,
+                         genero=st.session_state.genero,
+                         proposito=st.session_state.proposito
+                     )
+                 }
 
                 tiempos_respuesta = s.generar_tiempos_dict(st.session_state.horas_list)
 
-                # total_dict = ingresos_respuesta | tiempos_respuesta
+                elecciones_dict = st.session_state.elecciones_dict
+                elecciones_str = {f"choice_{k}": v for k, v in elecciones_dict.items()}
 
-                # s.guardar_ingresos(total_dict)
+                total_dict = ingresos_respuesta | tiempos_respuesta | elecciones_str
+
+                s.guardar_ingresos(total_dict)
                 st.rerun()
     
     else: 
@@ -416,32 +414,36 @@ if st.session_state.perfiles and not st.session_state.ingreso:
 
                 assert len(st.session_state.horas_list) == 9
 
-                # ingresos_respuesta = {
-                #     "id_encuestador": st.session_state.id_encuestador_valor,
-                #     "lugar": st.session_state.lugar,
-                #     "hora_id": st.session_state.hora_id,
-                #     "genero": st.session_state.genero,
-                #     "edad": st.session_state.edad,
-                #     "proposito": st.session_state.proposito,
-                #     "veh_hogar": veh_hogar,
-                #     "ingreso": ing_familiar,
-                #     "nro_dis" : st.session_state.nro_disenho,
-                #     "bloque": st.session_state.nro_bloque,
-                #     "id_encuesta": s.generar_id_encuesta(
-                #         hora_id=st.session_state.hora_id,
-                #         nro_disenho=st.session_state.nro_disenho,
-                #         id_encuestador=st.session_state.id_encuestador_valor,
-                #         edad=st.session_state.edad,
-                #         genero=st.session_state.genero,
-                #         proposito=st.session_state.proposito
-                #     )
-                # }
+                ingresos_respuesta = {
+                     "id_encuestador": st.session_state.id_encuestador_valor,
+                     "hora_id": st.session_state.hora_id,
+                     "genero": st.session_state.genero,
+                     "edad": st.session_state.edad,
+                     "proposito": st.session_state.proposito,
+                     "ingreso": None,
+                     "financiador": financiador,
+                     "duenho": duenho_camion,
+                     "tipo_carga": tipo_carga,    
+                     "nro_dis" : st.session_state.nro_disenho,
+                     "bloque": st.session_state.nro_bloque,
+                     "id_encuesta": s.generar_id_encuesta(
+                         hora_id=st.session_state.hora_id,
+                         nro_disenho=st.session_state.nro_disenho,
+                         id_encuestador=st.session_state.id_encuestador_valor,
+                         edad=st.session_state.edad,
+                         genero=st.session_state.genero,
+                         proposito=st.session_state.proposito
+                     )
+                 }
 
                 tiempos_respuesta = s.generar_tiempos_dict(st.session_state.horas_list)
 
-                # total_dict = ingresos_respuesta | tiempos_respuesta
+                elecciones_dict = st.session_state.elecciones_dict
+                elecciones_str = {f"choice_{k}": v for k, v in elecciones_dict.items()}
 
-                # s.guardar_ingresos(total_dict)
+                total_dict = ingresos_respuesta | tiempos_respuesta | elecciones_str
+
+                s.guardar_ingresos(total_dict)
                 st.rerun()
 
     

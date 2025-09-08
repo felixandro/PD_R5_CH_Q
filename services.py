@@ -209,15 +209,12 @@ def guardar_respuestas(respuestas):
     print("Guardando respuestas:", respuestas)
 
     # Configurar Supabase
-    SUPABASE_URL = "https://gkgxipnjsoxgqsaukhtg.supabase.co"
-    SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrZ3hpcG5qc294Z3FzYXVraHRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxMTI1NjEsImV4cCI6MjA2NTY4ODU2MX0.TNyYDvpLhBX-Ocr03jzdo9GulXYfYMmOh0Vx20hlJfg"
+    SUPABASE_URL = "https://vvbfmsrimkbnwuincvnn.supabase.co"
+    SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2YmZtc3JpbWtibnd1aW5jdm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MjMxMzYsImV4cCI6MjA3MjM5OTEzNn0.M0R7TRdstOIUFijGpokF0WcEVoZ6rI2ArckFcQj4ijk"
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-    print("hola")
+    response = supabase.table("bbdd_pd").insert(respuestas).execute()
 
-    response = supabase.table("bbdd_pd_v2").insert(respuestas).execute()
-
-    print("sdadsa")
 
 def guardar_respuestas_jv(respuestas):
 
@@ -241,11 +238,11 @@ def guardar_ingresos(ingresos):
     Args:
         ingresos (dict): Diccionario con los datos de ingresos del usuario.
     """
-    SUPABASE_URL = "https://gkgxipnjsoxgqsaukhtg.supabase.co"
-    SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrZ3hpcG5qc294Z3FzYXVraHRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxMTI1NjEsImV4cCI6MjA2NTY4ODU2MX0.TNyYDvpLhBX-Ocr03jzdo9GulXYfYMmOh0Vx20hlJfg"
+    SUPABASE_URL = "https://vvbfmsrimkbnwuincvnn.supabase.co"
+    SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2YmZtc3JpbWtibnd1aW5jdm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MjMxMzYsImV4cCI6MjA3MjM5OTEzNn0.M0R7TRdstOIUFijGpokF0WcEVoZ6rI2ArckFcQj4ijk"
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-    response = supabase.table("ingresos_v2").insert(ingresos).execute()
+    response = supabase.table("complemento").insert(ingresos).execute()
 
 def generar_encuestadores_dict(encuestadores_df):
     encuestadores_dict = {}
