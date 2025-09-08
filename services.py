@@ -306,7 +306,6 @@ def generar_id_respuesta(hora_id, nro_disenho, nro_tarjeta, id_encuestador, edad
 
     return f"{hora_id_fmt}_{nro_disenho_fmt}_{nro_tarjeta}_{id_encuestador_fmt}_{edad}_{genero[0]}_{proposito[0]}"
 
-
 def generar_id_encuesta(hora_id, nro_disenho, id_encuestador, edad, genero, proposito):
 
     # Extraer componentes de fecha y hora de hora_id

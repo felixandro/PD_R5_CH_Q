@@ -81,7 +81,6 @@ if not st.session_state.id_encuestador:
             st.session_state.horas_list.append(time.strftime("%Y-%m-%d %H:%M:%S"))
             st.rerun()
 
-
 # Características del Encuestado
 
 if st.session_state.id_encuestador and not st.session_state.caracteristicas:
@@ -119,7 +118,16 @@ if st.session_state.id_encuestador and not st.session_state.caracteristicas:
 
     proposito = st.selectbox(
         "",
-        ["", "Trabajo", "Estudio", "Otro"]
+        ["", 
+         "Trabajo", 
+         "Estudio", 
+         "Trámites", 
+         "Compras", 
+         "Salud", 
+         "Actividades Sociales",
+         "Vacaciones o turismo",
+         "Asuntos Personales",
+          "Otro" ]
     )
 
     if tipo_veh != "" and genero != "" and edad  and proposito != "":
@@ -165,7 +173,6 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
         En caso contrario, seleccione la **situación actual** cuando crea que las reducciones en tiempo de viaje no son suficientes y/o el peaje estaría por sobre lo que estaría dispuesto a pagar.
                                            
         Analice con detención e intente plasmar su disposición a pagar verdadera en cada una de las preguntas.""")
-
 
     s.texto_con_fondo(texto_introductorio1, upper_margin="1rem")
 
@@ -280,11 +287,17 @@ if st.session_state.perfiles and not st.session_state.ingreso:
 
     if st.session_state.tipo_veh == "Vehículo Liviano":
 
-        s.texto_con_fondo("¿Cuántos vehículos posee en el hogar?", upper_margin=0)
+        s.texto_con_fondo("¿Quién Financia este viaje?", upper_margin=0)
 
-        veh_hogar = st.selectbox(
+        financiador = st.selectbox(
             "",
-            ["", "0", "1", "2 o más"]
+            ["", 
+             "Ud mismo (el chofer)", 
+             "Un acompañante", 
+             "Alguien de su grupo familiar directo", 
+             "Su empleador o el de un acompañante", 
+             "Otro"],
+             key = "financiador"
         )
 
         s.texto_con_fondo("¿En qué rango se encuentra su ingreso familiar mensual?", upper_margin=0)
@@ -301,16 +314,14 @@ if st.session_state.perfiles and not st.session_state.ingreso:
             "Entre  1.750.001 y 2.000.000",
             "Entre  2.000.001 y 2.250.000",
             "Entre  2.250.001 y 2.500.000",
-            "Más de 2.500.000",
-            "No Responde"]
+            "Más de 2.500.000"]
         )
 
-        if veh_hogar != "" and ing_familiar != "":
+        if ing_familiar != "":
             next_button_4 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_4")
 
             if next_button_4:
                 st.session_state.ingreso = True
-                st.session_state.veh_hogar = veh_hogar
                 st.session_state.ing_familiar = ing_familiar
                 st.session_state.horas_list.append(time.strftime("%Y-%m-%d %H:%M:%S"))
 
@@ -372,33 +383,11 @@ if st.session_state.perfiles and not st.session_state.ingreso:
              key = "duenho_camion"
         )
 
-        s.texto_con_fondo("¿Cual es la capacidad del camión?", upper_margin=0)
-
-        capacidad = st.number_input(
-            "",
-            min_value=0,
-            max_value=None,
-            value=None,
-            step=1,
-            key = "capacidad"
-        )
-
-        s.texto_con_fondo("¿Cuanta carga transporta hoy?", upper_margin=0)
-
-        carga = st.number_input(
-            "",
-            min_value=0,
-            max_value=None,
-            value=None,
-            step=1,
-            key = "carga"
-        )
-
         s.texto_con_fondo("¿Que tipo de carga transporta hoy?", upper_margin=0)
 
         tipo_carga = st.selectbox(
             "",
-            ["", 
+            ["",
              "Minera", 
              "Forestal",
              "Pesquera",
@@ -409,11 +398,12 @@ if st.session_state.perfiles and not st.session_state.ingreso:
              "Construcción",
              "Alimentos",
              "Retail",
-             "Otro"],
+             "Otro",
+             "Ninguna (camión vacío)"],
              key = "tipo_carga"
         )
 
-        if financiador != "" and duenho_camion != "" and capacidad != "" and carga != "" and tipo_carga != "":
+        if financiador != "" and duenho_camion != "" and tipo_carga != "":
             next_button_4 = st.button("Siguiente", use_container_width=True, type = "primary", key = "next_button_4")
 
             if next_button_4:
