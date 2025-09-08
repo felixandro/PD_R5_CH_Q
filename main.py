@@ -163,16 +163,18 @@ if st.session_state.caracteristicas and not st.session_state.texto_introductorio
         
         En un **hipotético futuro**, el tramo podría pasar a tener **dos pistas por sentido**, lo cual aumentaría la velocidad de circulación, reduciendo así los tiempos de viaje. Sin embargo, esto implicaría la inclusión de una **plaza de peaje** que cobraría una cierta tarifa.
         
-        En este sentido, el objetivo de la encuesta es medir su disposición a pagar por las eventuales diminuciones en los tiempos de viaje. Para esto le presentaremos cuadros comparativos entre la situación **actual** y un hipotético escenario **futuro** (Mostrar Cuadro).""")
+        En este sentido, el objetivo de la encuesta es medir su disposición a pagar por las eventuales diminuciones en los tiempos de viaje. Para esto le presentaremos cuadros comparativos entre dos escenarios como los del siguiente cuadro.""")
     
     texto_introductorio2 = textwrap.dedent(f"""
-        En cada cuadro, el costo y tiempo de viaje futuros irán cambiando. 
-
-        Seleccione la **situación futura** cuando considere que estaría dispuesto a pagar el peaje por las reducciones en tiempo de viaje.
-        
-        En caso contrario, seleccione la **situación actual** cuando crea que las reducciones en tiempo de viaje no son suficientes y/o el peaje estaría por sobre lo que estaría dispuesto a pagar.
+        Del cuadro anterior se observa que una alternativa se caracteriza por ser rápida y cara, mientras la otra es lenta y barata.
                                            
-        Analice con detención e intente plasmar su disposición a pagar verdadera en cada una de las preguntas.""")
+        Su tarea es comparar ambos escenarios y seleccionar el que preferiría en una situación real. 
+                                           
+        En algunos casos podría considerar mejor pagar el costo más alto por ahorrarse una cierta cantidad de minutos, pero en otros casos el ahorro de tiempo podría no justificar el pago adicional.
+                                           
+        Todo esto dependerá de su disposición a pagar, la cual buscamos medir con esta encuesta.
+                                           
+        Por último, le pedimos por favor que analice con detención antes de responder.""")
 
     s.texto_con_fondo(texto_introductorio1, upper_margin="1rem")
 
